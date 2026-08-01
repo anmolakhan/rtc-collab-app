@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RTC Collab</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- AUTH SCREEN -->
+  <section id="auth-screen" class="screen">
+    <div class="auth-card">
+      <h1>RTC Collab</h1>
+      <p class="subtitle">Video • Screen Share • Whiteboard • Files</p>
+      <input id="username" placeholder="Username" autocomplete="username" />
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+      <div class="auth-buttons">
+        <button id="loginBtn">Log In</button>
+        <button id="registerBtn" class="secondary">Register</button>
+      </div>
+      <p id="authError" class="error"></p>
+    </div>
+  </section>
+
+  <!-- LOBBY SCREEN -->
+  <section id="lobby-screen" class="screen hidden">
+    <div class="auth-card">
+      <h1>Join a Room</h1>
+      <input id="roomId" placeholder="Room ID (e.g. team-standup)" />
+      <button id="joinBtn">Join Room</button>
+    </div>
+  </section>
+
+  <!-- CALL SCREEN -->
+  <section id="call-screen" class="screen hidden">
+    <header class="topbar">
+      <span id="roomLabel"></span>
+      <div class="topbar-actions">
+        <button id="toggleMicBtn">🎤 Mute</button>
+        <button id="toggleCamBtn">📷 Camera Off</button>
+        <button id="screenShareBtn">🖥️ Share Screen</button>
+        <button id="whiteboardBtn">🖊️ Whiteboard</button>
+        <button id="fileBtn">📎 Share File</button>
+        <button id="leaveBtn" class="danger">Leave</button>
+      </div>
+    </header>
+
+    <main class="main-area">
+      <div id="videoGrid" class="video-grid"></div>
+
+      <aside id="sidePanel" class="side-panel hidden">
+        <div class="panel-tabs">
+          <button data-tab="chat" class="tab-btn active">Chat</button>
+          <button data-tab="files" class="tab-btn">Files</button>
+        </div>
+        <div id="chatTab" class="tab-content">
+          <div id="chatMessages" class="chat-messages"></div>
+          <div class="chat-input-row">
+            <input id="chatInput" placeholder="Message..." />
+            <button id="sendChatBtn">Send</button>
+          </div>
+        </div>
+        <div id="filesTab" class="tab-content hidden">
+          <input type="file" id="fileInput" />
+          <div id="fileList" class="file-list"></div>
+        </div>
+      </aside>
+    </main>
+
+    <div id="whiteboardOverlay" class="whiteboard-overlay hidden">
+      <div class="whiteboard-toolbar">
+        <input type="color" id="wbColor" value="#111111" />
+        <input type="range" id="wbSize" min="1" max="20" value="3" />
+        <button id="wbClearBtn">Clear</button>
+        <button id="wbCloseBtn">Close</button>
+      </div>
+      <canvas id="whiteboardCanvas"></canvas>
+    </div>
+
+    <input type="file" id="hiddenFileInput" class="hidden" />
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
