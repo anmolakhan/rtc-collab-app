@@ -1,6 +1,6 @@
 # RTC Collab — Real-Time Communication App
 
-A video conferencing + collaboration tool built for Task 4:
+A video conferencing + collaboration tool built:
 video calling (multi-user), screen sharing, file sharing, a shared whiteboard,
 JWT-based auth, and encrypted media (via WebRTC's mandatory DTLS-SRTP).
 
